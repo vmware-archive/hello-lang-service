@@ -23,4 +23,14 @@ public class HelloController {
 		}
 		return hellos.get(lang);
 	}
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String langs() {
+		StringBuffer sb = new StringBuffer();
+		for (String s : hellos.keySet()) {
+			sb.append(s);
+			sb.append(" ");
+		}
+		return sb.toString().trim();
+	}
 }
