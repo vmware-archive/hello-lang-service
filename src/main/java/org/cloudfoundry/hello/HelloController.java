@@ -1,6 +1,7 @@
 package org.cloudfoundry.hello;
 
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -10,27 +11,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/hello")
 public class HelloController {
 
 	@Resource(name = "hellos")
 	private Map<String, String> hellos;
 
-	@RequestMapping(value = "/{lang}", method = RequestMethod.GET)
-	public String sayHello(@PathVariable String lang) {
+	@RequestMapping(value = "/hello/{lang}", method = RequestMethod.GET)
+	public Greeting sayHello(@PathVariable String lang) {
 		if (lang == null || !hellos.containsKey(lang)) {
-			return "";
+			return null;
 		}
-		return hellos.get(lang);
+		return new Greeting(hellos.get(lang));
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String langs() {
-		StringBuffer sb = new StringBuffer();
-		for (String s : hellos.keySet()) {
-			sb.append(s);
-			sb.append(" ");
-		}
-		return sb.toString().trim();
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	public Set<String> langs() {
+		return hellos.keySet();
 	}
 }

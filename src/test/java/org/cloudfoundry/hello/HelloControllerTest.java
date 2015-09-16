@@ -21,10 +21,10 @@ public class HelloControllerTest {
 
 	@Test
 	public void testHello() {
-		assertEquals("Hello", helloController.sayHello("en"));
-		assertEquals("Hola", helloController.sayHello("es"));
-		assertEquals("Bonjour", helloController.sayHello("fr"));
-		assertEquals("Buon giorno", helloController.sayHello("it"));
-		assertEquals("Hallo", helloController.sayHello("de"));
+		assertEquals("Hello", helloController.sayHello("en").getGreeting());
+		assertEquals("Hola", helloController.sayHello("es").getGreeting());
+		assertEquals("Bonjour", helloController.sayHello("fr").getGreeting());
+		assertEquals("Buon giorno", helloController.sayHello("it").getGreeting());
+		assertEquals("Hallo", helloController.sayHello("de").getGreeting());
 	}
 }
