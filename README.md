@@ -1,3 +1,5 @@
+# hello-lang-service is no longer actively maintained by VMware.
+
 # hello-lang-service
 Simple service that says hello in different languages.
 
